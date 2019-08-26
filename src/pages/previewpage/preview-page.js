@@ -1,12 +1,16 @@
 
 
 import React, {Component} from 'react'
+import TVShow from '../../components/tvshow/tvshow';
+
+
 class PreviewPage extends Component {
  render(){
 	 return(
 	
 		<div>
-       thi is preview page
+             
+       
         <title>Preview-Page</title>
         <link rel="stylesheet" href="Stylesheet.css" />
         <div className="grid-container">
@@ -16,8 +20,8 @@ class PreviewPage extends Component {
             <h1>Preview Page</h1>
           </div>
           <div className="item2"><h2>Shows</h2>
-            <button>Show1</button>
-            <button>Show2</button>
+          <TVShow name="Full House" allowDelete={false}/>
+          <TVShow name="Noticiero Univision" allowDelete={false}/>
           </div>
           <div className="item3">
             <dd>
