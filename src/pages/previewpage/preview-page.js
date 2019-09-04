@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 import TVShow from '../../components/tvshow/tvshow';
-
+import PropTypes from 'prop-types';
 
 class PreviewPage extends Component {
  render(){
@@ -37,5 +37,16 @@ class PreviewPage extends Component {
 
 		)
 	 }
-	}
+  }
+  
+
+
+
+ PreviewPage.propTypes = {
+    title: PropTypes.string,
+    allowDelete: PropTypes.bool,
+    name: PropTypes.string,
+    rating: PropTypes.string,
+    imageurl: PropTypes.string
+}    
 export default PreviewPage

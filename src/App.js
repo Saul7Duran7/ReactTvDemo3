@@ -4,15 +4,15 @@ import './App.css';
 import ManagePage from './pages/managepage/manage-page'
 import PreviewPage from './pages/previewpage/preview-page'
 import Navigation from './components/navigation/navigation'
-import TVShow from './components/tvshow/tvshow'
+
 import {Route} from 'react-router-dom'
 function App() {
   return(
     
     
     <div className="app">
-      <TVShow/>
-      <Route path = "/tvshow" component = {TVShow} />
+      
+      
     
     <Navigation/>
     <Route exact path = "/" component = {ManagePage} />
