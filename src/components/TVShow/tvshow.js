@@ -13,7 +13,7 @@ class TVShow extends Component  {
     renderDelete = () => {
         if (this.props.allowDelete === true){
             return(
-                <button onClick={this.props.deleteHandler} className="Remove" name = "" >-</button>
+                <button onClick={this.props.deleteHandler} className="Remove"  >-</button>
             )
             }
         }
@@ -23,7 +23,7 @@ class TVShow extends Component  {
         return (
 
                 <div>
-                    <button onClick={this.props.selectHandler} className="Shows">{this.props.name}</button>
+                    <button onClick={this.props.selectHandler} className="Shows" >{this.props.name}</button>
                     {this.renderDelete()}
 
                 </div>
@@ -39,7 +39,7 @@ class TVShow extends Component  {
 
 
 TVShow.propTypes = {
-    title: PropTypes.string,
+    show: PropTypes.string,
     allowDelete: PropTypes.bool,
     name: PropTypes.string,
     rating: PropTypes.string,
