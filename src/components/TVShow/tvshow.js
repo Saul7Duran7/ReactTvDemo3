@@ -41,8 +41,10 @@ class TVShow extends Component  {
 TVShow.propTypes = {
     show: PropTypes.string,
     allowDelete: PropTypes.bool,
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     rating: PropTypes.string,
+    selectHandler: PropTypes.func,
+    deleteHandler: PropTypes.func.isRequired,
     imageurl: PropTypes.string
 }    
 {/* <span>{this.deleteButto()}<h3>{this.props.title}</h3></span>    */}
