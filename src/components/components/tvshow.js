@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import ManagePage from '../../pages/managepage/manage-page';
+import propTypes from 'prop-types'
+
 
        
     
@@ -38,14 +38,15 @@ class TVShow extends Component  {
 
 
 
+ 
+
 TVShow.propTypes = {
-    title: PropTypes.string,
-    allowDelete: PropTypes.bool,
-    name: PropTypes.string,
-    rating: PropTypes.string,
-    imageurl: PropTypes.string
-}    
-{/* <span>{this.deleteButto()}<h3>{this.props.title}</h3></span>    */}
+    name: propTypes.string.isRequired,
+    allowDelete: propTypes.bool,
+    selectHandler: propTypes.func.isRequired,
+    deleteHandler: propTypes.func,
+}
+
 
 export default TVShow 
                

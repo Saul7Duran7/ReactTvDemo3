@@ -1,21 +1,24 @@
 import React, {Component} from 'react'
-import TVShow from '../../components/tvshow/tvshow';
-import PropTypes from 'prop-types';
+import TVShow from '../../components/components/tvshow'
+import propTypes from 'prop-types';
+
 
 
 class ManagePage extends Component {
     
-         constructor(props){
-           super(props)
-           this.state = {
-             show: {name : "", rating : "", imageurl : "",   
-           }};           
+  static propTypes = {
+    show: propTypes.array.isRequired,
+    tvShowDeleted: propTypes.func.isRequired,
+    saveTVShow: propTypes.func.isRequired,
+    tvShows: propTypes.array,
+  }
 
-            
-          
-                     
-                     
-           }
+  
+  state = {
+    name: '',
+    rating: '',
+    url: '',
+    };
            
 
           
@@ -29,41 +32,50 @@ class ManagePage extends Component {
         //  }
        
 
+        tvShowSelected = () => {
+          this.setState({
+            name:this.props.show.name, 
+            rating:this.props.show.rating, 
+            url:this.props.show.url  })
+        }
 
+        tvShowDeleted = () => {
+          this.props.tvShowDeleted()
+        }
+        saveTVShow = () => {
+          this.props.saveTVShow({
+            name:this.state.name, 
+            rating:this.state.rating, 
+            url:this.state.url
+          })
+          this.setState({
+            name: '', 
+            rating: '', 
+            url:''
+          })
+        }
 
-  tvShowSelected = () => {
-
-    console.log('Tv Show Selected', this.state.show)
        
-  }
+        //   let i=0
+        //   for(let show of this.props.tvShows){
+        //     console.log(show);
+        //     shows.push(<TVShow selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name={show.name} allowDelete={true}/>)
+        //   }
+        //   return this.props.tvShows
+        // }
 
-
-
-tvShowDeleted = () => {
-
- 
-  console.log( 'TV Show Deleted')
-  this.setState({show:{name:""}})  
-}
-
-saveTVShow = () => {
-   
-  console.log('TV Show Saved')
-  this.setState({show:{name:"", rating:"", imageurl:""}})
-   
-  
-
-}
-
-renderShows = () => { return (<TVShow  selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name="Full House"  name={this.state.show.name} allowDelete = {true}  />)}
+// renderShows = () => { return (<TVShow  selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name="Full House"  name={this.state.show.name} allowDelete = {true}  />)}
      
-
+renderShows = () => {
+  return this.props.tvShows.map((a, i) => {
+    return <TVShow key={i} selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name={a.name} allowDelete={true}/>
+  })}
   
   
   
   render(){
     
-    console.log(this.state.show)
+    
         return(
                 
           
@@ -101,16 +113,19 @@ renderShows = () => { return (<TVShow  selectHandler={this.tvShowSelected} delet
                   
                      <dt><h2>New/Edit Show</h2></dt>
                     
-                    <dl> Name: <input type="text" value={this.state.show.name} placeholder="Show Rating"  onChange={(e) =>
-                               this.setState({show: {name: e.target.value, rating: this.state.show.rating, imageurl:this.state.show.imageurl }})} /> </dl>
+                    <dl> Name: <input id="name" type="text" value={this.state.name} onChange={(event)=>{
+              this.setState({  name: event.target.value   })}}/> </dl>
                                 
-                    <dl>  Rating: <input type="text" value={this.state.show.rating} placeholder="Show Rating" onChange={(e) =>
-                               this.setState({show: { name:this.state.show.name,rating: e.target.value,imageurl:this.state.show.imageurl}})} /> </dl>
+                    <dl>  Rating:      <input id="rating" type="text" value={this.state.rating} onChange={(event)=>{
+              this.setState({   rating: event.target.value  }) }}/>   </dl>
 
-                    <dl>  Image URL: <input type="text" value={this.state.show.imageurl} placeholder="Image URL" onChange={(e) =>
-                               this.setState({show:{name:this.state.show.name, rating:this.state.show.rating, imageurl: e.target.value}})} /> </dl>
+                    <dl>  Image URL: <input id="url" type="text" value={this.state.url} onChange={(event)=>{
+              this.setState({
+                url: event.target.value
+              })
+            }}/> </dl>
 
-
+                     
 
 
 
@@ -131,11 +146,12 @@ renderShows = () => { return (<TVShow  selectHandler={this.tvShowSelected} delet
           }
             
  
-     ManagePage.propTypes = {
-      show: PropTypes.string,
-      allowDelete: PropTypes.bool,
-      name: PropTypes.string,
-      rating: PropTypes.string,
-      imageurl: PropTypes.string
-  }    
+  //    ManagePage.propTypes = {
+  //     show: PropTypes.string,
+  //     allowDelete: PropTypes.bool,
+  //     name: PropTypes.string,
+  //     rating: PropTypes.string,
+  //     imageurl: PropTypes.string
+  // }    
 export default ManagePage
+

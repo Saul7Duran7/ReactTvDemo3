@@ -1,15 +1,39 @@
 
 
 import React, {Component} from 'react'
-import TVShow from '../../components/tvshow/tvshow';
-import PropTypes from 'prop-types';
+import TVShow from '../../components/components/tvshow';
+import propTypes from 'prop-types';
 
-class PreviewPage extends Component {
- render(){
+class previewPage extends Component {
+  static propTypes = {
+    show: propTypes.object.isRequired,
+  }
+
+  state = {
+    tvShowSelected: {
+        name: 'show',
+        rating: 'rating',
+        url: 'url',
+    }
+  };
+  renderShows = () => {
+    return(<TVShow selectHandler={this.tvShowSelected} name={this.props.show.name}/>
+      )}
+tvShowSelected = () => {
+    this.setState({
+        tvShowSelected:{
+        name:this.props.show.name, 
+        rating:this.props.show.rating, 
+        url:this.props.show.url
+        }
+      })
+}
+ 
+  render(){
 	 return(
 	
 		<div>
-             
+            
        
         <title>Preview-Page</title>
         <link rel="stylesheet" href="Stylesheet.css" />
@@ -20,8 +44,9 @@ class PreviewPage extends Component {
             <h1>Preview Page</h1>
           </div>
           <div className="item2"><h2>Shows</h2>
-          <TVShow name="Full House" allowDelete={false}/>
-          <TVShow name="Noticiero Univision" allowDelete={false}/>
+          {/* 
+           */}
+            {this.renderShows()}
           </div>
           <div className="item3">
             <dd>
@@ -42,11 +67,11 @@ class PreviewPage extends Component {
 
 
 
- PreviewPage.propTypes = {
-    title: PropTypes.string,
-    allowDelete: PropTypes.bool,
-    name: PropTypes.string,
-    rating: PropTypes.string,
-    imageurl: PropTypes.string
-}    
-export default PreviewPage
+//  PreviewPage.propTypes = {
+//     title: PropTypes.string,
+//     allowDelete: PropTypes.bool,
+//     name: PropTypes.string,
+//     rating: PropTypes.string,
+//     imageurl: PropTypes.string
+// }    
+export default previewPage
