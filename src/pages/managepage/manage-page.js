@@ -32,28 +32,33 @@ class ManagePage extends Component {
         //  }
        
 
-        tvShowSelected = () => {
+        tvShowSelected = (event) => {
+          let id=event.currentTarget.id;
           this.setState({
-            name:this.props.show.name, 
-            rating:this.props.show.rating, 
-            url:this.props.show.url  })
+            name:this.props.tvShows[id].name, 
+            rating:this.props.tvShows[id].rating, 
+            url:this.props.tvShows[id].url
+          })
         }
+        
 
-        tvShowDeleted = () => {
-          this.props.tvShowDeleted()
-        }
-        saveTVShow = () => {
-          this.props.saveTVShow({
-            name:this.state.name, 
-            rating:this.state.rating, 
-            url:this.state.url
-          })
-          this.setState({
-            name: '', 
-            rating: '', 
-            url:''
-          })
-        }
+        tvShowDeleted = (event) => {
+          let id=event.currentTarget.id;
+          this.props.tvShowDeleted(id)}
+          
+         
+          saveTVShow = () => {
+            this.props.saveTVShow({
+              name:this.state.name, 
+              rating:this.state.rating, 
+              url:this.state.url
+            })
+            this.setState({
+              name: '', 
+              rating: '', 
+              url:''
+            })
+          }
 
        
         //   let i=0
@@ -67,8 +72,8 @@ class ManagePage extends Component {
 // renderShows = () => { return (<TVShow  selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name="Full House"  name={this.state.show.name} allowDelete = {true}  />)}
      
 renderShows = () => {
-  return this.props.tvShows.map((a, i) => {
-    return <TVShow key={i} selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name={a.name} allowDelete={true}/>
+  return this.props.tvShows.map((show, i) => {
+    return <TVShow key={i} id={i} selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name={show.name} allowDelete={true}/>
   })}
   
   
@@ -86,12 +91,12 @@ renderShows = () => {
                       
 
                  <title>Manage-Page</title>
-                   <link rel="stylesheet" href="Stylesheet.css" />
+                   
                    <div className="grid-container">
-                   <div className="item1">
+                       <div className="item1">
                      {/* <a href="manage-page.html">Manage Page </a> 
                      <a href="preview-page.html">Manage Preview</a> */}
-                     <h1>Manage Page</h1>     
+                     <h1>Manage Page</h1> 
                    </div>    
                    <div className="item2">
                      
@@ -99,7 +104,7 @@ renderShows = () => {
                      <dd /><dt><h2>Shows</h2></dt>
                      
                   
-                   {this.renderShows()}
+                   <h4>{this.renderShows()}</h4>
                      
                  {/* renderShows = () => {<TVShow  selectHandler={this.tvShowSelected} deleteHandler={this.tvshowDeleted} name="Full House"  allowDelete={true}  />} */}
 
@@ -114,10 +119,11 @@ renderShows = () => {
                      <dt><h2>New/Edit Show</h2></dt>
                     
                     <dl> Name: <input id="name" type="text" value={this.state.name} onChange={(event)=>{
-              this.setState({  name: event.target.value   })}}/> </dl>
+              this.setState({  name: event.target.value   })}
+              }/> </dl>
                                 
                     <dl>  Rating:      <input id="rating" type="text" value={this.state.rating} onChange={(event)=>{
-              this.setState({   rating: event.target.value  }) }}/>   </dl>
+              this.setState({   rating: Number (event.target.value ) }) }}/>   </dl>
 
                     <dl>  Image URL: <input id="url" type="text" value={this.state.url} onChange={(event)=>{
               this.setState({
@@ -146,12 +152,12 @@ renderShows = () => {
           }
             
  
-  //    ManagePage.propTypes = {
-  //     show: PropTypes.string,
-  //     allowDelete: PropTypes.bool,
-  //     name: PropTypes.string,
-  //     rating: PropTypes.string,
-  //     imageurl: PropTypes.string
-  // }    
+     ManagePage.propTypes = {
+      // show: PropTypes.string,
+      // allowDelete: PropTypes.bool,
+      name: propTypes.string,
+      rating: propTypes.string,
+      imageurl: propTypes.string
+  }    
 export default ManagePage
 

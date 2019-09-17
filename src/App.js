@@ -17,15 +17,21 @@ import React, {Component} from 'react'
 class App extends Component {
 
 
+
+  
+
   state = {
     show:[],
     tvShows:[],
     };       
 
 
-    tvShowDeleted = () => {
-      this.setState({ show:""})
+    tvShowDeleted = (id) => {
+      let deletetvShows= [...this.state.tvShows];
+        deletetvShows.splice(id, 1);
+        this.setState({tvShows: deletetvShows})
     }
+  
     
    
        
@@ -49,14 +55,14 @@ class App extends Component {
     
       renderPreviewPage = () => {
         return (
-          <PreviewPage show={this.state.show}/>
+          <PreviewPage show={this.state.show} tvShows={this.state.tvShows}/>
         )
       }
     
 
   render() {
  
-    console.log(this.state)
+    // console.log(this.state)
  
     return(    
     <div className="app">      
