@@ -9,7 +9,7 @@
 }
 
 
-h1, .navigation {
+h1 {
     
   text-align: center;
   color:rgb(235, 234, 245);
@@ -21,15 +21,15 @@ h1, .navigation {
    
 }
 
-.item1   {
+.item1 {
       
-    
+     
       border-radius: 4px;
       border-right: black; 
       background:rgb(89, 89, 107);
       padding: 0px;
       margin: 0px;
-      text-align:left;
+      text-align: center;
       color: (27, 27, 184);
       font-size: 20px;
    
@@ -64,8 +64,8 @@ h1, .navigation {
 }
 
 body{
-    margin: 0px 250px; 
-    padding: 0px 0px;
+    margin: 0px 550px; 
+    padding: 0px 5px;
    
    
 }
@@ -100,6 +100,16 @@ body{
   }
   
  
-  
+  nav.links ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .links {
+    height: 40px;
+    border-bottom: solid #353535;
+    
+  }
 
 
