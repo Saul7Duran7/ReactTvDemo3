@@ -164,7 +164,7 @@ class App extends Component {
     
       renderPreviewPage = () => {
         return (
-          <PreviewPage show={this.state.show} tvShows={this.state.tvShows}/>
+          <PreviewPage show={this.state.show} tvShows={this.state.tvShows} tvShowDeleted={this.tvShowDeleted} saveTVShow={this.saveTVShow}/>
         )
       }
     
@@ -189,4 +189,3 @@ class App extends Component {
 
 
   export default App;
-

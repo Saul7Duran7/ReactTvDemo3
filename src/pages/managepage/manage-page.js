@@ -16,8 +16,8 @@ class ManagePage extends Component {
   }
   state = {
   name: '',
-  rating: '',
-  url: '',
+  phnumber: '',
+  email: '',
   id: '',
   };
       
@@ -25,8 +25,8 @@ class ManagePage extends Component {
     let id=event.currentTarget.id;
     this.setState({
       name:this.props.tvShows[id].name, 
-      rating:this.props.tvShows[id].rating, 
-      url:this.props.tvShows[id].url,
+      phnumber:this.props.tvShows[id].phnumber, 
+      email:this.props.tvShows[id].email,
       id: this.props.tvShows[id]._id,
     })
   }
@@ -39,28 +39,28 @@ class ManagePage extends Component {
   saveTVShow = () => {
     this.props.saveTVShow({
       name:this.state.name, 
-      rating:this.state.rating, 
-      url:this.state.url,
+      phnumber:this.state.phnumber, 
+      email:this.state.email,
       id:this.state.id
     })
     this.setState({
       name: '', 
-      rating: '', 
-      url:'',
+      phnumber: '', 
+      email:'',
       id: ''
     })
   }
   updateTVShow = () => {
     this.props.updateTVShow({
       name:this.state.name, 
-      rating:this.state.rating, 
-      url:this.state.url,
+      phnumber:this.state.phnumber, 
+      email:this.state.email,
       id:this.state.id
     })
     this.setState({
       name: '', 
-      rating: '', 
-      url:'',
+      phnumber: '', 
+      email:'',
       id: ''
     })
   }
@@ -149,19 +149,19 @@ renderShows = () => {
                 <div>               
                       
 
-                 <title>Manage-Page</title>
+                 <title>Contact List</title>
                    
                    <div className="grid-container">
                        <div className="item1">
                           <h3>{this.props.links}</h3>
                      {/* <a href="manage-page.html">Manage Page </a> 
                      <a href="preview-page.html">Manage Preview</a> */}
-                     <h1>Manage Page</h1> 
+                     <h1>Contact List</h1> 
                    </div>    
                    <div className="item2">
                      
                   
-                     <dd /><dt><h2>Shows</h2></dt>
+                     <dd /><dt><h2>Contact List</h2></dt>
                      
                   
                    <h4>{this.renderShows()}</h4>
@@ -176,18 +176,18 @@ renderShows = () => {
                    </div>         
                    <div className="item3">
                   
-                     <dt><h2>New/Edit Show</h2></dt>
+                     <dt><h2>New/Edit Contact</h2></dt>
                     
                     <dl> Name: <input id="name" type="text" value={this.state.name} onChange={(event)=>{
               this.setState({  name: event.target.value   })}
               }/> </dl>
                                 
-                    <dl>  Rating:      <input id="rating" type="text" value={this.state.rating} onChange={(event)=>{
-              this.setState({   rating: Number (event.target.value ) }) }}/>   </dl>
+                    <dl>  Phone Number:      <input id="rating" type="text" value={this.state.phnumber} onChange={(event)=>{
+              this.setState({   phnumber: (event.target.value ) }) }}/>   </dl>
 
-                    <dl>  Image URL: <input id="url" type="text" value={this.state.url} onChange={(event)=>{
+                    <dl>  E-Mail: <input id="url" type="text" value={this.state.email} onChange={(event)=>{
               this.setState({
-                url: event.target.value
+                email: event.target.value
               })
             }}/> </dl>
 
@@ -197,7 +197,6 @@ renderShows = () => {
 
 
                      {/* <dl>Name: <input type="text" onChange={this.setState}  defaultValue={this.state.name} ></input>
-
                      </dl> */}
                         
 
@@ -216,8 +215,7 @@ renderShows = () => {
       // show: PropTypes.string,
       // allowDelete: PropTypes.bool,
       name: propTypes.string,
-      rating: propTypes.string,
-      imageurl: propTypes.string
+      phnumber: propTypes.string,
+      email: propTypes.string
   }    
 export default ManagePage
-

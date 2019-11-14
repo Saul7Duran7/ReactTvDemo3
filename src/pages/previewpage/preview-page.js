@@ -1,5 +1,4 @@
 
-
 import React, {Component} from 'react'
 import TVShow from '../../components/components/tvshow';
 import propTypes from 'prop-types';
@@ -13,22 +12,22 @@ class PreviewPage extends Component {
   state = {
     tvShowSelected: {
         name: 'Show',
-        rating: 'Rating',
-        url: 'URL',
+        phnumber: 'Rating',
+        email: 'E-mail',
     }
   };
-  calculateAvgRating = () => {  
-     const tvShows = this.props.tvShows;
+  // calculateAvgRating = () => {  
+  //    const tvShows = this.props.tvShows;
      
-     console.log(tvShows)
+  //    console.log(tvShows)
      
-     if (tvShows.length >=1) {
-     const sumRating = tvShows.reduce((acc,value) => ({rating: acc.rating + value.rating}));
-     const avgRating = (sumRating.rating / tvShows.length);
-     return (<h4>Average Rating: {avgRating}</h4>);
-   }else {
-     return (<h4>Average Rating: 0</h4>);
-   }}
+  //    if (tvShows.length >=1) {
+  //    const sumRating = tvShows.reduce((acc,value) => ({rating: acc.rating + value.rating}));
+  //    const avgRating = (sumRating.rating / tvShows.length);
+  //    return (<h4>Average Rating: {avgRating}</h4>);
+  //  }else {
+  //    return (<h4>Average Rating: 0</h4>);
+  //  }}
      
      
   //   const tvShows = this.props.tvShows;
@@ -48,16 +47,17 @@ class PreviewPage extends Component {
  
  
 
-  renderShows = () => {const filteredRating = this.props.tvShows.filter((rating, i) => {return rating.rating < 4 })
-    return filteredRating.map((show, i) => { return <TVShow key={i} id={i} selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name={show.name}/>
+  renderShows = () => {
+    return this.props.tvShows.map((show, i) => {
+      return <TVShow key={i} id={i} selectHandler={this.tvShowSelected} deleteHandler={this.tvShowDeleted} name={show.name} allowDelete={false}/>
     })}
 tvShowSelected = (event) => {
   let id=event.currentTarget.id;
     this.setState({
         tvShowSelected:{
           name:this.props.tvShows[id].name, 
-          rating:this.props.tvShows[id].rating, 
-          url:this.props.tvShows[id].url
+          phnumber:this.props.tvShows[id].phnumber, 
+          email:this.props.tvShows[id].email
         }
       })
 }
@@ -68,21 +68,20 @@ tvShowSelected = (event) => {
      
       <div className="grid-container">  
        <div className="item1">
-         <h1>Preview Page</h1> 
+         <h1>Preview Contact List Page</h1> 
 
        </div>   
                   <div className = "item2">
-                  <h4>Shows</h4>
-                  <h4>{this.calculateAvgRating()}</h4>
+                  <h2>Contact List</h2>
                   <h4>{this.renderShows()}</h4>
             
               
                   
                 </div>  
                  <div className= "item3">
-                   <h4>{this.state.tvShowSelected.name}</h4>
-                   <h4>{this.state.tvShowSelected.rating}</h4>
-                   <h4>{this.state.tvShowSelected.url}</h4>
+                   <h5>{this.state.tvShowSelected.name}</h5>
+                   <h5>{this.state.tvShowSelected.phnumber}</h5>
+                   <h5>{this.state.tvShowSelected.email}</h5>
                
                   </div>
             </div>
@@ -97,7 +96,7 @@ tvShowSelected = (event) => {
     // title: PropTypes.string,
     // allowDelete: PropTypes.bool,
     name: propTypes.string,
-    rating: propTypes.string,
-    url: propTypes.string
+    phnumber: propTypes.string,
+    email: propTypes.string
 }    
 export default PreviewPage

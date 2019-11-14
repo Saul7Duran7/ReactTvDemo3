@@ -6,8 +6,8 @@ class Navigation extends Component{
         return (
         <nav>
             <ul>
-             <li><Link to = "/">Manage Page</Link></li>
-             <li><Link to = "/preview-page">Preview Page</Link></li>
+             <li><Link to = "/">Contact List Page</Link></li>
+             <li><Link to = "/preview-page">Preview Contacts List Page</Link></li>
             </ul>
        </nav>      
         )  
